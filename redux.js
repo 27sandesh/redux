@@ -1,9 +1,17 @@
 const { configureStore } = require("@reduxjs/toolkit");
 
 const ConuterReducer = (state = { counter: 0 }, action) => {
-  return {
-    counter: state.counter + 1,
-  };
+  if (action.type === "increment") {
+    return {
+      counter: state.counter + 2,
+    };
+  }
+  if (action.type === "decrement") {
+    return {
+      counter: state.counter - 2,
+    };
+  }
+  return state;
 };
 
 const store = configureStore({
@@ -20,4 +28,4 @@ store.dispatch({ type: "increment" });
 store.dispatch({ type: "increment" });
 
 store.dispatch({ type: "increment" });
-store.dispatch({ type: "increment" });
+store.dispatch({ type: "decrement" });
